@@ -1,0 +1,11 @@
+turn on tv
+VERB MOD OBJ
+
+can you please switch off the radio ?
+O O O VERB MOD O OBJ O
+
+search cat videos on YouTube
+VERB OBJ OBJ O DEV
+
+search on YouTube how to cook
+VERB O DEV OBJ OBJ OBJ
