@@ -6,6 +6,12 @@ The purpose of the repo is to show that even a tiny LSTM with a tiny dataset can
 You may think of it as a glorified RegEx.
 Not everything has to be a Large Language Model.
 
+## Install
+Through [conda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html):
+```bash
+$ conda env create --file environment.yml
+```
+
 ## How To Use (Training)
 Train a new model using training.py:
 
@@ -46,12 +52,12 @@ $ python inference.py --sentence "turn on the radio"
 {'OBJ': 'radio', 'VERB': 'turn on'}
 ```
 
-The output can be either 'clean' or raw.
+The output can be either 'clean' (as above) or raw.
+Clean returns a dictionary where each key is a label and each value is the concatenation of the tokens classified as that label.
+
+Raw just returns the list of labels for each token:
+
 ```bash
 $ python inference.py --sentence "turn on the radio" --raw
 ['VERB', 'VERB', 'O', 'OBJ']
-
 ```
-
-
-
