@@ -1,32 +1,19 @@
-import torch
-import numpy as np
-import pickle, json
-from training import SeqVocabulary, SeqModel
+from pprint import pprint
+from SeqModel import SeqVocabulary, SeqModel
 
-MODELSPATH = 'models/model.pth'
-testphrase = 'search hello world on youtube'
+import argparse
+parser = argparse.ArgumentParser(description="Use a pretrained model over text")
+parser.add_argument("--path", type=str, help='Path to pretrained model',
+                    default="models/newestModel")
+parser.add_argument("--sentence", type=str, help='Path to pretrained model',
+                    default="Turn on the radio")
+parser.add_argument("--raw", help='Return model outputs with no post-process',
+                    action="store_true")
+args = parser.parse_args()
 
-base_name = MODELSPATH.rsplit('.', 1)[0]
-vocab_file_name  = base_name + ".pkl"
-params_file_name = base_name + ".json"
+sentence  = args.sentence
+model = SeqModel(load=args.path)
+out = model.classify(sentence, clean=not(args.raw))
 
-with open(vocab_file_name, 'rb') as f:
-    vocabs = pickle.load(f)
-toks_vocab = SeqVocabulary(vocabs[0])
-lbls_vocab = SeqVocabulary(vocabs[1])
-
-with open(params_file_name, 'r') as f:
-    params = json.load(f)
-
-model = SeqModel(params)
-model.load_state_dict(
-    torch.load(
-        MODELSPATH,
-        map_location=torch.device('cpu')
-    )
-)
-model.eval()
-
-out = model.classify(testphrase, toks_vocab, lbls_vocab)
-print(testphrase)
-print(out)
+print(sentence)
+pprint(out)
