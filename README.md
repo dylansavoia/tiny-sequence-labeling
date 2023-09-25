@@ -1,9 +1,9 @@
-# Py-Torch Sequence Classification 
-An LSTM-based architecture to train a model for Sequence Classification.
+# Py-Torch Sequence Labeling 
+An LSTM-based architecture to train a model for Sequence Labeling (assigning a label to each token of a sequence).
 
 The purpose of the repo is to show that even a tiny LSTM with a tiny dataset can generalize well enough for small use-cases as it can be for DIY projects.
 
-You may think of it as a glorified RegEx.
+You may think of it as a glorified RegEx.<br>
 Not everything has to be a Large Language Model.
 
 ## Install
